@@ -9,6 +9,14 @@ import (
 	"strings"
 )
 
+func RunFrom(parentPath string) (string, error) {
+	dirs, err := getSubdirs(parentPath)
+	if err != nil {
+		return "", err
+	}
+	return Run(dirs)
+}
+
 func Run(options []string) (string, error) {
 	results, err := run(options, false)
 	if err != nil || len(results) == 0 {
