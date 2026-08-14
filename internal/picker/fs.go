@@ -35,14 +35,6 @@ func ListMediaItems(parentPath string, extensions []string) ([]string, error) {
 	return items, nil
 }
 
-func SelectFrom(parentPath string) (string, error) {
-	dirs, err := getSubdirs(parentPath)
-	if err != nil {
-		return "", err
-	}
-	return Run(dirs)
-}
-
 func getSubdirs(parentPath string) ([]string, error) {
 	entries, err := os.ReadDir(parentPath)
 	if err != nil {
