@@ -2,6 +2,7 @@ package menus
 
 import (
 	"errors"
+	"os"
 	"path/filepath"
 
 	"rqpt/media-launcher/internal/finder"
@@ -10,7 +11,7 @@ import (
 )
 
 func OpenRecordingsSubMenu() error {
-	recordingsPath := "/home/user/Videos/recordings" //os.Getenv("RECORDINGS_DIR")
+	recordingsPath := os.Getenv("RECORDINGS_DIR")
 	if recordingsPath == "" {
 		return errors.New("Environment variable $RECORDINGS_DIR is not set.")
 	}

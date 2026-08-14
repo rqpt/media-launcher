@@ -2,6 +2,7 @@ package menus
 
 import (
 	"errors"
+	"os"
 	"path/filepath"
 
 	"rqpt/media-launcher/internal/finder"
@@ -10,7 +11,7 @@ import (
 )
 
 func OpenSeriesSubMenu() error {
-	seriesPath := "/home/user/Videos/series" //os.Getenv("SERIES_DIR")
+	seriesPath := os.Getenv("SERIES_DIR")
 	if seriesPath == "" {
 		return errors.New("Environment variable $SERIES_DIR is not set.")
 	}

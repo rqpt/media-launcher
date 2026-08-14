@@ -2,6 +2,7 @@ package menus
 
 import (
 	"errors"
+	"os"
 	"path/filepath"
 
 	"rqpt/media-launcher/internal/finder"
@@ -10,7 +11,7 @@ import (
 )
 
 func OpenMusicSubMenu() error {
-	musicPath := "/home/user/Music" //os.Getenv("MUSIC_DIR")
+	musicPath := os.Getenv("MUSIC_DIR")
 	if musicPath == "" {
 		return errors.New("Environment variable $MUSIC_DIR is not set.")
 	}

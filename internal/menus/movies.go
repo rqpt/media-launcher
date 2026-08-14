@@ -2,6 +2,7 @@ package menus
 
 import (
 	"errors"
+	"os"
 	"path/filepath"
 
 	"rqpt/media-launcher/internal/finder"
@@ -9,7 +10,7 @@ import (
 )
 
 func OpenMoviesSubMenu() error {
-	moviesPath := "/home/user/Videos/movies" //os.Getenv("MOVIES_DIR")
+	moviesPath := os.Getenv("MOVIES_DIR")
 	if moviesPath == "" {
 		return errors.New("Environment variable $MOVIES_DIR is not set.")
 	}
