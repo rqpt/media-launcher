@@ -31,7 +31,7 @@ func OpenSeriesSubMenu() error {
 		switch state {
 
 		case stateSelectShow:
-			selectedShow, err := picker.SelectFrom(seriesPath)
+			selectedShow, err := picker.RunFrom(seriesPath)
 			if err != nil {
 				return err
 			}
@@ -42,7 +42,7 @@ func OpenSeriesSubMenu() error {
 			state = stateSelectSeason
 
 		case stateSelectSeason:
-			selectedSeason, err := picker.SelectFrom(showPath)
+			selectedSeason, err := picker.RunFrom(showPath)
 			if err != nil {
 				return err
 			}

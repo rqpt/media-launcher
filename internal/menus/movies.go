@@ -16,7 +16,7 @@ func OpenMoviesSubMenu() error {
 		return errors.New("Environment variable $MOVIES_DIR is not set.")
 	}
 
-	selectedMovie, err := picker.SelectFrom(moviesPath)
+	selectedMovie, err := picker.RunFrom(moviesPath)
 	if err != nil {
 		return err
 	}
