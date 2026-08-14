@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"rqpt/media-launcher/internal/finder"
+	"rqpt/media-launcher/internal/picker"
 	"rqpt/media-launcher/internal/player"
 )
 
@@ -15,7 +16,7 @@ func OpenMoviesSubMenu() error {
 		return errors.New("Environment variable $MOVIES_DIR is not set.")
 	}
 
-	selectedMovie, err := finder.SelectSubDir(moviesPath)
+	selectedMovie, err := picker.SelectFrom(moviesPath)
 	if err != nil {
 		return err
 	}
