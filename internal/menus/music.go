@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"rqpt/media-launcher/internal/finder"
 	"rqpt/media-launcher/internal/picker"
 	"rqpt/media-launcher/internal/player"
 )
@@ -56,7 +55,10 @@ func OpenMusicSubMenu() error {
 			state = stateSelectTracks
 
 		case stateSelectTracks:
-			tracks, err := finder.ListMediaItems(albumPath, []string{".mp3", ".flac"})
+			tracks, err := picker.ListMediaItems(
+				albumPath,
+				[]string{".mp3", ".flac"},
+			)
 			if err != nil {
 				return err
 			}

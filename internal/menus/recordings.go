@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"rqpt/media-launcher/internal/finder"
 	"rqpt/media-launcher/internal/picker"
 	"rqpt/media-launcher/internal/player"
 )
@@ -16,7 +15,10 @@ func OpenRecordingsSubMenu() error {
 		return errors.New("Environment variable $RECORDINGS_DIR is not set.")
 	}
 
-	recordings, err := finder.ListMediaItems(recordingsPath, []string{".mkv", ".mp4"})
+	recordings, err := picker.ListMediaItems(
+		recordingsPath,
+		[]string{".mkv", ".mp4"},
+	)
 	if err != nil {
 		return err
 	}

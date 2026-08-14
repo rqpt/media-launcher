@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"rqpt/media-launcher/internal/finder"
 	"rqpt/media-launcher/internal/picker"
 	"rqpt/media-launcher/internal/player"
 )
@@ -55,7 +54,10 @@ func OpenSeriesSubMenu() error {
 			state = stateSelectEpisode
 
 		case stateSelectEpisode:
-			episodes, err := finder.ListMediaItems(seasonPath, []string{".mkv", ".mp4"})
+			episodes, err := picker.ListMediaItems(
+				seasonPath,
+				[]string{".mkv", ".mp4"},
+			)
 			if err != nil {
 				return err
 			}
