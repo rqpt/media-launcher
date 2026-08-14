@@ -1,0 +1,3 @@
+module rqpt/media-launcher
+
+go 1.26.5
