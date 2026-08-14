@@ -35,7 +35,7 @@ func ListMediaItems(parentPath string, extensions []string) ([]string, error) {
 	return items, nil
 }
 
-func getSubdirs(parentPath string) ([]string, error) {
+func getSubMenus(parentPath string) ([]string, error) {
 	entries, err := os.ReadDir(parentPath)
 	if err != nil {
 		return nil, fmt.Errorf("Could not read directory %s: %w", parentPath, err)

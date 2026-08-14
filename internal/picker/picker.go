@@ -9,8 +9,8 @@ import (
 	"strings"
 )
 
-func Run(options []string) (string, error) {
-	results, err := run(options, false)
+func Run(menuItems []string) (string, error) {
+	results, err := run(menuItems, false)
 	if err != nil || len(results) == 0 {
 		return "", err
 	}
@@ -19,18 +19,18 @@ func Run(options []string) (string, error) {
 }
 
 func RunFrom(parentPath string) (string, error) {
-	dirs, err := getSubdirs(parentPath)
+	menuItems, err := getSubMenus(parentPath)
 	if err != nil {
 		return "", err
 	}
-	return Run(dirs)
+	return Run(menuItems)
 }
 
-func RunMulti(options []string) ([]string, error) {
-	return run(options, true)
+func RunMulti(menuItems []string) ([]string, error) {
+	return run(menuItems, true)
 }
 
-func run(options []string, multi bool) ([]string, error) {
+func run(menuItems []string, multi bool) ([]string, error) {
 	var args []string
 	if multi {
 		args = append(args, "-m")
@@ -53,7 +53,7 @@ func run(options []string, multi bool) ([]string, error) {
 
 	go func() {
 		defer pickerStdin.Close()
-		for _, option := range options {
+		for _, option := range menuItems {
 			io.WriteString(pickerStdin, option+"\n")
 		}
 	}()
