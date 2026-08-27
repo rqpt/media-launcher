@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"rqpt/media-launcher/internal/menus"
-	"rqpt/media-launcher/internal/picker"
+	"github.com/rqpt/media-launcher/internal/menus"
+	"github.com/rqpt/picker"
 )
 
 func main() {

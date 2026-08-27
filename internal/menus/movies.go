@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"rqpt/media-launcher/internal/picker"
-	"rqpt/media-launcher/internal/player"
+	"github.com/rqpt/media-launcher/internal/player"
+	"github.com/rqpt/picker"
 )
 
 func OpenMoviesSubMenu() error {
