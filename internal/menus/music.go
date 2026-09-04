@@ -30,7 +30,7 @@ func OpenMusicSubMenu() error {
 	for {
 		switch state {
 		case stateSelectArtist:
-			selectedArtist, err := picker.RunFrom(musicPath)
+			selectedArtist, err := picker.RunSubdirs(musicPath)
 			if err != nil {
 				return err
 			}
@@ -42,7 +42,7 @@ func OpenMusicSubMenu() error {
 			state = stateSelectAlbum
 
 		case stateSelectAlbum:
-			selectedAlbum, err := picker.RunFrom(artistPath)
+			selectedAlbum, err := picker.RunSubdirs(artistPath)
 			if err != nil {
 				return err
 			}
@@ -55,7 +55,7 @@ func OpenMusicSubMenu() error {
 			state = stateSelectTracks
 
 		case stateSelectTracks:
-			tracks, err := picker.ListMediaItems(
+			tracks, err := picker.ListFiles(
 				albumPath,
 				[]string{".mp3", ".flac"},
 			)

@@ -31,7 +31,7 @@ func OpenSeriesSubMenu() error {
 		switch state {
 
 		case stateSelectShow:
-			selectedShow, err := picker.RunFrom(seriesPath)
+			selectedShow, err := picker.RunSubdirs(seriesPath)
 			if err != nil {
 				return err
 			}
@@ -42,7 +42,7 @@ func OpenSeriesSubMenu() error {
 			state = stateSelectSeason
 
 		case stateSelectSeason:
-			selectedSeason, err := picker.RunFrom(showPath)
+			selectedSeason, err := picker.RunSubdirs(showPath)
 			if err != nil {
 				return err
 			}
@@ -54,7 +54,7 @@ func OpenSeriesSubMenu() error {
 			state = stateSelectEpisode
 
 		case stateSelectEpisode:
-			episodes, err := picker.ListMediaItems(
+			episodes, err := picker.ListFiles(
 				seasonPath,
 				[]string{".mkv", ".mp4"},
 			)

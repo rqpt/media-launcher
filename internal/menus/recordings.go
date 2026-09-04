@@ -15,7 +15,7 @@ func OpenRecordingsSubMenu() error {
 		return errors.New("Environment variable $RECORDINGS_DIR is not set.")
 	}
 
-	recordings, err := picker.ListMediaItems(
+	recordings, err := picker.ListFiles(
 		recordingsPath,
 		[]string{".mkv", ".mp4"},
 	)
