@@ -62,17 +62,21 @@ func OpenSeriesSubMenu() error {
 				return err
 			}
 
-			selectedEpisode, err := picker.Run(episodes)
+			selectedEpisodes, err := picker.RunMulti(episodes)
 			if err != nil {
 				return err
 			}
-			if selectedEpisode == "" {
+			if len(selectedEpisodes) == 0 {
 				state = stateSelectSeason
 				continue
 			}
 
-			episodeFile := filepath.Join(seasonPath, selectedEpisode)
-			return player.Play([]string{episodeFile})
+			var episodeFiles []string
+			for _, episode := range selectedEpisodes {
+				episodeFiles = append(episodeFiles, filepath.Join(seasonPath, episode))
+			}
+
+			return player.Play(episodeFiles)
 		}
 	}
 }
