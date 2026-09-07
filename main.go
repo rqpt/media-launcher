@@ -3,17 +3,26 @@ package main
 import (
 	"fmt"
 	"log"
+	"maps"
 	"os"
+	"slices"
 
 	"github.com/rqpt/media-launcher/internal/menus"
 	"github.com/rqpt/picker"
 )
 
 func main() {
-	menuItems := []string{"movies", "series", "music", "recordings"}
+	menus := map[string]func() error{
+		"movies":     menus.OpenMoviesSubMenu,
+		"series":     menus.OpenSeriesSubMenu,
+		"recordings": menus.OpenRecordingsSubMenu,
+		"music":      menus.OpenMusicSubMenu,
+	}
 
 	for {
-		selectedMenuItem, err := picker.Run(menuItems)
+		selectedMenuItem, err := picker.Run(
+			slices.Sorted(maps.Keys(menus)),
+		)
 		if err != nil {
 			log.Fatalf("Error running picker: %v", err)
 		}
@@ -21,19 +30,7 @@ func main() {
 			return
 		}
 
-		var menuErr error
-
-		switch selectedMenuItem {
-		case "movies":
-			menuErr = menus.OpenMoviesSubMenu()
-		case "series":
-			menuErr = menus.OpenSeriesSubMenu()
-		case "recordings":
-			menuErr = menus.OpenRecordingsSubMenu()
-		case "music":
-			menuErr = menus.OpenMusicSubMenu()
-		}
-
+		menuErr := menus[selectedMenuItem]()
 		if menuErr != nil {
 			showErrorAndPause(menuErr.Error())
 		}
